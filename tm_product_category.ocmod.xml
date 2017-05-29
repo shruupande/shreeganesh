@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+	<name>TM Product Category image</name>
+	<version>1.0</version>
+	<author>http://www.templatemonster.com</author>
+	<link>http://www.templatemonster.com</link>
+	<code>10</code>
+	<file path="catalog/controller/product/category.php">
+		<operation error="skip">
+			<search><![CDATA[  'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '_' . $result['category_id'] . $url)]]></search>
+			<add position="after"><![CDATA[,'thumb' => $image]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[  $data['categories'][] = array(]]></search>
+			<add position="before"><![CDATA[  $image = $this->model_tool_image->resize($result['image'], $this->config->get('config_image_category_width'), $this->config->get('config_image_category_height'));   ]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[ $data['button_grid'] = $this->language->get('button_grid'); ]]></search>
+			<add position="after"><![CDATA[ $data['text_details'] = $this->language->get('text_details'); ]]></add>
+		</operation>
+	</file>
+	
+	<file path="catalog/language/english/product/category.php">
+		<operation error="skip">
+			<search><![CDATA[ $_['text_limit'] ]]></search>
+			<add position="before"><![CDATA[ $_['text_details'] = 'Details'; ]]></add>
+		</operation>		
+	</file>
+	<file path="catalog/language/de-DE/product/category.php">
+		<operation error="skip">
+			<search><![CDATA[ $_['text_limit'] ]]></search>
+			<add position="before"><![CDATA[ $_['text_details'] = 'Details'; ]]></add>
+		</operation>		
+	</file>
+	<file path="catalog/language/russian/product/category.php">
+		<operation error="skip">
+			<search><![CDATA[ $_['text_limit'] ]]></search>
+			<add position="before"><![CDATA[ $_['text_details'] = 'Подробнее'; ]]></add>
+		</operation>		
+	</file>
+	
+	<file path="catalog/controller/product/special.php">
+		<operation>
+			<search><![CDATA[ $data['button_grid'] = $this->language->get('button_grid'); ]]></search>
+			<add position="after"><![CDATA[ $data['text_details'] = $this->language->get('text_details'); ]]></add>
+		</operation>		
+	</file>
+	<file path="catalog/language/english/product/special.php">
+		<operation error="skip">
+			<search><![CDATA[ $_['text_limit'] ]]></search>
+			<add position="before"><![CDATA[ $_['text_details'] = 'Details'; ]]></add>
+		</operation>		
+	</file>
+	<file path="catalog/language/de-DE/product/special.php">
+		<operation error="skip">
+			<search><![CDATA[ $_['text_limit'] ]]></search>
+			<add position="before"><![CDATA[ $_['text_details'] = 'Details'; ]]></add>
+		</operation>		
+	</file>
+	<file path="catalog/language/russian/product/special.php">
+		<operation error="skip">
+			<search><![CDATA[ $_['text_limit'] ]]></search>
+			<add position="before"><![CDATA[ $_['text_details'] = 'Подробнее'; ]]></add>
+		</operation>		
+	</file>
+	
+	<file path="catalog/controller/product/search.php">
+		<operation>
+			<search><![CDATA[ $data['button_grid'] = $this->language->get('button_grid'); ]]></search>
+			<add position="after"><![CDATA[ $data['text_details'] = $this->language->get('text_details'); ]]></add>
+		</operation>		
+	</file>
+	<file path="catalog/language/english/product/search.php">
+		<operation error="skip">
+			<search><![CDATA[ $_['text_limit'] ]]></search>
+			<add position="before"><![CDATA[ $_['text_details'] = 'Details'; ]]></add>
+		</operation>		
+	</file>
+	<file path="catalog/language/de-DE/product/search.php">
+		<operation error="skip">
+			<search><![CDATA[ $_['text_limit'] ]]></search>
+			<add position="before"><![CDATA[ $_['text_details'] = 'Details'; ]]></add>
+		</operation>		
+	</file>
+	<file path="catalog/language/russian/product/search.php">
+		<operation error="skip">
+			<search><![CDATA[ $_['text_limit'] ]]></search>
+			<add position="before"><![CDATA[ $_['text_details'] = 'Подробнее'; ]]></add>
+		</operation>		
+	</file>
+	
+	<file path="catalog/controller/product/manufacturer.php">
+		<operation>
+			<search><![CDATA[ $data['button_grid'] = $this->language->get('button_grid'); ]]></search>
+			<add position="after"><![CDATA[ $data['text_details'] = $this->language->get('text_details'); ]]></add>
+		</operation>		
+	</file>
+	<file path="catalog/language/english/product/manufacturer.php">
+		<operation error="skip">
+			<search><![CDATA[ $_['text_limit'] ]]></search>
+			<add position="before"><![CDATA[ $_['text_details'] = 'Details'; ]]></add>
+		</operation>		
+	</file>
+	<file path="catalog/language/de-DE/product/manufacturer.php">
+		<operation error="skip">
+			<search><![CDATA[ $_['text_limit'] ]]></search>
+			<add position="before"><![CDATA[ $_['text_details'] = 'Details'; ]]></add>
+		</operation>		
+	</file>
+	<file path="catalog/language/russian/product/manufacturer.php">
+		<operation error="skip">
+			<search><![CDATA[ $_['text_limit'] ]]></search>
+			<add position="before"><![CDATA[ $_['text_details'] = 'Подробнее'; ]]></add>
+		</operation>		
+	</file>
+	
+	
+</modification>

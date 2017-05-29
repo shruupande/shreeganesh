@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+	<name>TM Footer</name>
+	<version>1.0</version>
+	<author>http://www.templatemonster.com</author>
+	<link>http://www.templatemonster.com</link>
+	<code>4</code>
+	<file path="catalog/controller/common/footer.php">
+		<operation error="skip">
+			<search><![CDATA[ $data['text_newsletter'] = $this->language->get('text_newsletter'); ]]></search>
+			<add position="after"><![CDATA[ 			
+			$data['text_twi'] = $this->language->get('text_twi');
+			$data['text_fb'] = $this->language->get('text_fb');
+			$data['text_google'] = $this->language->get('text_google');
+			
+			if ($this->request->server['HTTPS']) {
+			$server = $this->config->get('config_ssl');
+			} else {
+				$server = $this->config->get('config_url');
+			}
+		
+			if (is_file(DIR_IMAGE . $this->config->get('config_logo'))) {
+			$data['logo'] = $server . 'image/' . $this->config->get('config_logo');
+			} else {
+				$data['logo'] = '';
+			}
+			
+			$data['home'] = $this->url->link('common/home');
+			
+			]]></add>
+		</operation>	
+		
+	</file>
+	<file path="catalog/language/*/common/footer.php">
+		<operation error="skip">
+			<search><![CDATA[ $_['text_information'] ]]></search>
+			<add position="before"><![CDATA[ 
+				$_['text_fb']   = 'Facebook';
+				$_['text_twi']   = 'Twitter';
+				$_['text_google']   = 'Google+';
+				]]></add>
+		</operation>
+	</file>
+	
+</modification>

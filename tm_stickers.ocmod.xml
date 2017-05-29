@@ -1,0 +1,577 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+	<name>TM Stickers</name>
+	<version>1.0</version>
+	<author>xena</author>
+	<link>http://www.templatemonster.com</link>
+	<code>20</code>
+	
+	<!-- Show 10 more recent products : $lim_last=8 -->	
+	
+	<!-- module featured -->
+
+	<file path="catalog/controller/module/featured.php">	
+		
+		<operation>
+			<search><![CDATA[ $data['heading_title'] ]]></search>
+			<add position="before"><![CDATA[ 
+			$data['text_sale'] = $this->language->get('text_sale'); 
+			$data['text_new'] = $this->language->get('text_new'); ]]></add>
+		</operation>
+		
+		 <operation>
+			<search><![CDATA[ $data['products'] = array(); ]]></search>
+			 <add position="after"><![CDATA[ 
+				$lim_last=8; 
+				$filter_data = array(
+					'sort'  => 'p.date_added',
+					'order' => 'DESC',
+					'start' => 0,
+					'limit' => $lim_last
+				);
+				$results1 = $this->model_catalog_product->getProducts($filter_data);
+				$last_array = array();
+				foreach ($results1 as $result) {
+				$last_array[] = $result['product_id'];			
+				};
+				
+			]]></add>
+		</operation> 
+		
+		 <operation>
+			<search><![CDATA[ 'tax'         => $tax, ]]></search>
+			<add position="after"><![CDATA[ 
+			'last_array' => $last_array,  
+			'limit_last' => $lim_last,  ]]></add>
+		</operation> 
+		
+	</file>
+	
+	<file path="catalog/language/english/module/featured.php">
+		<operation>
+			<search><![CDATA[
+			$_['text_tax']      = 'Ex Tax:';
+			]]></search>
+			<add position="after"><![CDATA[
+			$_['text_sale']      = 'Sale';
+			$_['text_new']      = 'New';
+			]]></add>
+		</operation>
+	</file>
+	
+	<file path="catalog/language/de-DE/module/featured.php">
+		<operation>
+			<search><![CDATA[
+			$_['text_tax']
+			]]></search>
+			<add position="before"><![CDATA[
+			$_['text_sale']      = 'Verkauf';
+			$_['text_new']      = 'Neue';
+			]]></add>
+		</operation>
+	</file>
+	
+	<file path="catalog/language/russian/module/featured.php">
+		<operation>
+			<search><![CDATA[
+			$_['text_tax']
+			]]></search>
+			<add position="before"><![CDATA[
+			$_['text_sale']      = 'Скидка';
+			$_['text_new']      = 'Новый';
+			]]></add>
+		</operation>
+	</file>
+	
+	<!-- category -->
+	
+	<file path="catalog/controller/product/category.php">
+		<operation>
+			<search><![CDATA[ $data['button_continue'] ]]></search>
+			<add position="before"><![CDATA[
+			$data['text_sale'] = $this->language->get('text_sale'); 
+			$data['text_new'] = $this->language->get('text_new');
+			
+			]]></add>
+		</operation>
+		 <operation>
+			<search><![CDATA[ $data['products'] = array(); ]]></search>
+			<add position="after"><![CDATA[ 
+				$lim_last=8; 
+				 $filter_data = array(
+					'sort'  => 'p.date_added',
+					'order' => 'DESC',
+					'start' => 0,
+					'limit' => $lim_last
+				);
+				$results1 = $this->model_catalog_product->getProducts($filter_data);
+				$last_array = array();
+				foreach ($results1 as $result) {
+				$last_array[] = $result['product_id'];			
+				};
+				
+			]]></add>
+		</operation> 
+		 <operation>
+			<search><![CDATA[ 'tax'         => $tax, ]]></search>
+			<add position="before"><![CDATA[  'last_array' => $last_array,  'limit_last' => $lim_last, ]]></add>
+		</operation>
+		
+	</file>
+	<file path="catalog/language/english/product/category.php">
+		<operation>
+			<search><![CDATA[
+			$_['text_limit']
+			]]></search>
+			<add position="before"><![CDATA[
+			$_['text_sale']      = 'Sale';
+			$_['text_new']      = 'New';
+			]]></add>
+		</operation>
+	</file>
+	<file path="catalog/language/de-DE/product/category.php">
+		<operation>
+			<search><![CDATA[ $_['text_limit'] ]]></search>
+			<add position="before"><![CDATA[
+				$_['text_sale']      = 'Verkauf';
+				$_['text_new']      = 'Neue';
+				
+			]]></add>
+		</operation>
+	</file>
+	<file path="catalog/language/russian/product/category.php">
+		<operation>
+			<search><![CDATA[ $_['text_limit'] ]]></search>
+			<add position="before"><![CDATA[
+				$_['text_sale']      = 'Скидка';
+				$_['text_new']      = 'Новый';
+				
+			]]></add>
+		</operation>
+	</file>
+	
+	<!-- special products -->
+	
+	<file path="catalog/controller/product/special.php">
+		<operation>
+			<search><![CDATA[ $data['button_cart'] ]]></search>
+			<add position="before"><![CDATA[
+			$data['text_sale'] = $this->language->get('text_sale'); 
+			$data['text_new'] = $this->language->get('text_new');
+			
+			]]></add>
+		</operation>
+		 <operation>
+			<search><![CDATA[ $data['products'] = array(); ]]></search>
+			<add position="after"><![CDATA[ 
+				$lim_last=8; 
+				 $filter_data = array(
+					'sort'  => 'p.date_added',
+					'order' => 'DESC',
+					'start' => 0,
+					'limit' => $lim_last
+				);
+				$results1 = $this->model_catalog_product->getProducts($filter_data);
+				$last_array = array();
+				foreach ($results1 as $result) {
+				$last_array[] = $result['product_id'];			
+				};
+				
+			]]></add>
+		</operation> 
+		 <operation>
+			<search><![CDATA[ 'tax'         => $tax, ]]></search>
+			<add position="before"><![CDATA[  'last_array' => $last_array,  'limit_last' => $lim_last, ]]></add>
+		</operation>
+		
+	</file>
+	<file path="catalog/language/english/product/special.php">
+		<operation>
+			<search><![CDATA[ $_['text_limit'] ]]></search>
+			<add position="before"><![CDATA[
+			$_['text_sale']      = 'Sale';
+			$_['text_new']      = 'New';
+			]]></add>
+		</operation>
+	</file>
+	<file path="catalog/language/de-DE/product/special.php">
+		<operation>
+			<search><![CDATA[ $_['text_limit'] ]]></search>
+			<add position="before"><![CDATA[
+				$_['text_sale']      = 'Verkauf';
+				$_['text_new']      = 'Neue';
+				
+			]]></add>
+		</operation>
+	</file>
+	<file path="catalog/language/russian/product/special.php">
+		<operation>
+			<search><![CDATA[ $_['text_limit'] ]]></search>
+			<add position="before"><![CDATA[
+				$_['text_sale']      = 'Скидка';
+				$_['text_new']      = 'Новый';
+				
+			]]></add>
+		</operation>
+	</file>
+	
+	<!-- search products -->
+	
+	<file path="catalog/controller/product/search.php">
+		<operation>
+			<search><![CDATA[ $data['button_cart'] ]]></search>
+			<add position="before"><![CDATA[
+			$data['text_sale'] = $this->language->get('text_sale'); 
+			$data['text_new'] = $this->language->get('text_new');
+			
+			]]></add>
+		</operation>
+		 <operation>
+			<search><![CDATA[ $data['products'] = array(); ]]></search>
+			<add position="after"><![CDATA[ 
+				$lim_last=8; 
+				 $filter_data = array(
+					'sort'  => 'p.date_added',
+					'order' => 'DESC',
+					'start' => 0,
+					'limit' => $lim_last
+				);
+				$results1 = $this->model_catalog_product->getProducts($filter_data);
+				$last_array = array();
+				foreach ($results1 as $result) {
+				$last_array[] = $result['product_id'];			
+				};
+				
+			]]></add>
+		</operation> 
+		 <operation>
+			<search><![CDATA[ 'tax'         => $tax, ]]></search>
+			<add position="before"><![CDATA[  'last_array' => $last_array,  'limit_last' => $lim_last, ]]></add>
+		</operation>
+		
+	</file>
+	<file path="catalog/language/english/product/search.php">
+		<operation>
+			<search><![CDATA[
+			$_['text_limit']
+			]]></search>
+			<add position="before"><![CDATA[
+			$_['text_sale']      = 'Sale';
+			$_['text_new']      = 'New';
+			]]></add>
+		</operation>
+	</file>
+	<file path="catalog/language/de-DE/product/search.php">
+		<operation>
+			<search><![CDATA[ $_['text_limit'] ]]></search>
+			<add position="before"><![CDATA[
+				$_['text_sale']      = 'Verkauf';
+				$_['text_new']      = 'Neue';
+				
+			]]></add>
+		</operation>
+	</file>
+	<file path="catalog/language/russian/product/search.php">
+		<operation>
+			<search><![CDATA[ $_['text_limit'] ]]></search>
+			<add position="before"><![CDATA[
+				$_['text_sale']      = 'Скидка';
+				$_['text_new']      = 'Новый';
+				
+			]]></add>
+		</operation>
+	</file>
+	
+	<!-- manufacturer products -->
+	
+	<file path="catalog/controller/product/manufacturer.php">
+		<operation>
+			<search><![CDATA[ $data['button_cart'] ]]></search>
+			<add position="before"><![CDATA[
+			$data['text_sale'] = $this->language->get('text_sale'); 
+			$data['text_new'] = $this->language->get('text_new');
+			
+			]]></add>
+		</operation>
+		 <operation>
+			<search><![CDATA[ $data['products'] = array(); ]]></search>
+			<add position="after"><![CDATA[ 
+				$lim_last=8; 
+				 $filter_data = array(
+					'sort'  => 'p.date_added',
+					'order' => 'DESC',
+					'start' => 0,
+					'limit' => $lim_last
+				);
+				$results1 = $this->model_catalog_product->getProducts($filter_data);
+				$last_array = array();
+				foreach ($results1 as $result) {
+				$last_array[] = $result['product_id'];			
+				};
+				
+			]]></add>
+		</operation> 
+		 <operation>
+			<search><![CDATA[ 'tax'         => $tax, ]]></search>
+			<add position="before"><![CDATA[  'last_array' => $last_array,  'limit_last' => $lim_last, ]]></add>
+		</operation>
+		
+	</file>
+	<file path="catalog/language/english/product/manufacturer.php">
+		<operation>
+			<search><![CDATA[
+			$_['text_limit']
+			]]></search>
+			<add position="before"><![CDATA[
+			$_['text_sale']      = 'Sale';
+			$_['text_new']      = 'New';
+			]]></add>
+		</operation>
+	</file>
+	<file path="catalog/language/de-DE/product/manufacturer.php">
+		<operation>
+			<search><![CDATA[ $_['text_limit'] ]]></search>
+			<add position="before"><![CDATA[
+				$_['text_sale']      = 'Verkauf';
+				$_['text_new']      = 'Neue';
+				
+			]]></add>
+		</operation>
+	</file>
+	<file path="catalog/language/russian/product/manufacturer.php">
+		<operation>
+			<search><![CDATA[ $_['text_limit'] ]]></search>
+			<add position="before"><![CDATA[
+				$_['text_sale']      = 'Скидка';
+				$_['text_new']      = 'Новый';
+				
+			]]></add>
+		</operation>
+	</file>
+	
+	<!-- module special -->	
+	
+	<file path="catalog/controller/module/special.php">	
+		
+		<operation>
+			<search><![CDATA[ $data['heading_title'] ]]></search>
+			<add position="before"><![CDATA[ 
+			$data['text_sale'] = $this->language->get('text_sale'); 
+			$data['text_new'] = $this->language->get('text_new'); ]]></add>
+		</operation>
+		
+		 <operation>
+			<search><![CDATA[ $data['products'] = array(); ]]></search>
+			 <add position="after"><![CDATA[ 
+				$lim_last=8; 
+				$filter_data = array(
+					'sort'  => 'p.date_added',
+					'order' => 'DESC',
+					'start' => 0,
+					'limit' => $lim_last
+				);
+				$results1 = $this->model_catalog_product->getProducts($filter_data);
+				$last_array = array();
+				foreach ($results1 as $result) {
+				$last_array[] = $result['product_id'];			
+				};
+				
+			]]></add>
+		</operation> 
+		
+		 <operation>
+			<search><![CDATA[ 'tax'         => $tax, ]]></search>
+			<add position="after"><![CDATA[ 
+			'last_array' => $last_array,  
+			'limit_last' => $lim_last,  ]]></add>
+		</operation> 
+		
+	</file>
+	
+	<file path="catalog/language/english/module/special.php">
+		<operation>
+			<search><![CDATA[
+			$_['text_tax']      = 'Ex Tax:';
+			]]></search>
+			<add position="after"><![CDATA[
+			$_['text_sale']      = 'Sale';
+			$_['text_new']      = 'New';
+			]]></add>
+		</operation>
+	</file>
+	
+	<file path="catalog/language/de-DE/module/special.php">
+		<operation>
+			<search><![CDATA[
+			$_['text_tax']
+			]]></search>
+			<add position="before"><![CDATA[
+			$_['text_sale']      = 'Verkauf';
+			$_['text_new']      = 'Neue';
+			]]></add>
+		</operation>
+	</file>
+	
+	<file path="catalog/language/russian/module/special.php">
+		<operation>
+			<search><![CDATA[
+			$_['text_tax']
+			]]></search>
+			<add position="before"><![CDATA[
+			$_['text_sale']      = 'Скидка';
+			$_['text_new']      = 'Новый';
+			]]></add>
+		</operation>
+	</file>
+	
+	<!-- module bestseller -->
+	
+	<file path="catalog/controller/module/bestseller.php">	
+		
+		<operation>
+			<search><![CDATA[ $data['heading_title'] ]]></search>
+			<add position="before"><![CDATA[ 
+			$data['text_sale'] = $this->language->get('text_sale'); 
+			$data['text_new'] = $this->language->get('text_new'); ]]></add>
+		</operation>
+		
+		 <operation>
+			<search><![CDATA[ $data['products'] = array(); ]]></search>
+			 <add position="after"><![CDATA[ 
+				$lim_last=8; 
+				$filter_data = array(
+					'sort'  => 'p.date_added',
+					'order' => 'DESC',
+					'start' => 0,
+					'limit' => $lim_last
+				);
+				$results1 = $this->model_catalog_product->getProducts($filter_data);
+				$last_array = array();
+				foreach ($results1 as $result) {
+				$last_array[] = $result['product_id'];			
+				};
+				
+			]]></add>
+		</operation> 
+		
+		 <operation>
+			<search><![CDATA[ 'tax'         => $tax, ]]></search>
+			<add position="after"><![CDATA[ 
+			'last_array' => $last_array,  
+			'limit_last' => $lim_last,  ]]></add>
+		</operation> 
+		
+	</file>
+	
+	<file path="catalog/language/english/module/bestseller.php">
+		<operation>
+			<search><![CDATA[
+			$_['text_tax']      = 'Ex Tax:';
+			]]></search>
+			<add position="after"><![CDATA[
+			$_['text_sale']      = 'Sale';
+			$_['text_new']      = 'New';
+			]]></add>
+		</operation>
+	</file>
+	
+	<file path="catalog/language/de-DE/module/bestseller.php">
+		<operation>
+			<search><![CDATA[
+			$_['text_tax']
+			]]></search>
+			<add position="before"><![CDATA[
+			$_['text_sale']      = 'Verkauf';
+			$_['text_new']      = 'Neue';
+			]]></add>
+		</operation>
+	</file>
+	
+	<file path="catalog/language/russian/module/bestseller.php">
+		<operation>
+			<search><![CDATA[
+			$_['text_tax']
+			]]></search>
+			<add position="before"><![CDATA[
+			$_['text_sale']      = 'Скидка';
+			$_['text_new']      = 'Новый';
+			]]></add>
+		</operation>
+	</file>
+	
+	<!-- module latest -->
+	
+	<file path="catalog/controller/module/latest.php">	
+		
+		<operation>
+			<search><![CDATA[ $data['heading_title'] ]]></search>
+			<add position="before"><![CDATA[ 
+			$data['text_sale'] = $this->language->get('text_sale'); 
+			$data['text_new'] = $this->language->get('text_new'); ]]></add>
+		</operation>
+		
+		 <operation>
+			<search><![CDATA[ $data['products'] = array(); ]]></search>
+			 <add position="after"><![CDATA[ 
+				$lim_last=8; 
+				$filter_data = array(
+					'sort'  => 'p.date_added',
+					'order' => 'DESC',
+					'start' => 0,
+					'limit' => $lim_last
+				);
+				$results1 = $this->model_catalog_product->getProducts($filter_data);
+				$last_array = array();
+				foreach ($results1 as $result) {
+				$last_array[] = $result['product_id'];			
+				};
+				
+			]]></add>
+		</operation> 
+		
+		 <operation>
+			<search><![CDATA[ 'tax'         => $tax, ]]></search>
+			<add position="after"><![CDATA[ 
+			'last_array' => $last_array,  
+			'limit_last' => $lim_last,  ]]></add>
+		</operation> 
+		
+	</file>
+	
+	<file path="catalog/language/english/module/latest.php">
+		<operation>
+			<search><![CDATA[
+			$_['text_tax']      = 'Ex Tax:';
+			]]></search>
+			<add position="after"><![CDATA[
+			$_['text_sale']      = 'Sale';
+			$_['text_new']      = 'New';
+			]]></add>
+		</operation>
+	</file>
+	
+	<file path="catalog/language/de-DE/module/latest.php">
+		<operation>
+			<search><![CDATA[
+			$_['text_tax']
+			]]></search>
+			<add position="before"><![CDATA[
+			$_['text_sale']      = 'Verkauf';
+			$_['text_new']      = 'Neue';
+			]]></add>
+		</operation>
+	</file>
+	
+	<file path="catalog/language/russian/module/latest.php">
+		<operation>
+			<search><![CDATA[
+			$_['text_tax']
+			]]></search>
+			<add position="before"><![CDATA[
+			$_['text_sale']      = 'Скидка';
+			$_['text_new']      = 'Новый';
+			]]></add>
+		</operation>
+	</file>
+	
+</modification>
